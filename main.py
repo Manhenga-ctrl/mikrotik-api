@@ -1,18 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from routes import bridge, interfaces,hotspot,wan, dhcp
-from dotenv import load_dotenv
+from routes import bridge, interfaces,hotspot,wan, dhcp,system
 import os
 
-app = FastAPI(title="MIKROTIK API", version="1.0.0")
-
-load_dotenv()
-
-MIKROTIK_HOST = os.getenv("MIKROTIK_HOST")
-MIKROTIK_USER = os.getenv("MIKROTIK_USER")
-MIKROTIK_PASS = os.getenv("MIKROTIK_PASS")
+app = FastAPI(title="MIKROTIK ROUTER MANAMGEMENT API", version="1.0.0")
 
 app.include_router(bridge.router)
+app.include_router(system.router)
 app.include_router(interfaces.router)
 app.include_router(hotspot.router)
 app.include_router(wan.router)

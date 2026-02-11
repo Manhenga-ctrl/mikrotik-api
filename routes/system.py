@@ -1,38 +1,11 @@
 
+
 from fastapi import APIRouter, HTTPException
 from config.mikrotik import MIKROTIK_HOST, get_mikrotik_api
 
-router = APIRouter(prefix="/wan", tags=["WAN"])
+router = APIRouter(prefix="/system", tags=["System Resources"])
 
 
-# this route shows the Eth0 interface details
-@router.get("/")
-def get_wan():
-    api_pool = get_mikrotik_api()
-    api = api_pool.get_api()
-
-    try:
-        routes = api.get_resource("/ip/route").get()
-        default = [r for r in routes if r.get("dst-address") == "0.0.0.0/0"]
-
-        return default
-
-    finally:
-        api_pool.disconnect()
-
-
-
-@router.get("/dhcp-leases")
-def get_dhcp_leases():      
-    api_pool = get_mikrotik_api()
-    api = api_pool.get_api()
-
-    try:
-        leases = api.get_resource("/ip/dhcp-server/lease").get()
-        return leases
-
-    finally:
-        api_pool.disconnect()
 
 @router.get("/cpu")
 def get_cpu_usage():
