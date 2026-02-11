@@ -17,7 +17,6 @@ app.add_middleware(
 )
 
 
-
 @app.get("/active")
 def dashboard():
     """Summary endpoint for dashboard"""
@@ -28,9 +27,6 @@ def dashboard():
         "active_users_count": len(active),
         "active_users": active
     }
-
-
-
 
 
 # Input model for new user
