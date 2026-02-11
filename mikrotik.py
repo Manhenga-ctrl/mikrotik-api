@@ -1,6 +1,6 @@
 from routeros_api import RouterOsApiPool
 
-MIKROTIK_HOST = "10.10.0.1"
+MIKROTIK_HOST = "10.50.0.2"
 MIKROTIK_USER = "admin"
 MIKROTIK_PASS = "admin"
 
