@@ -18,7 +18,7 @@ app.add_middleware(
 
 
 # Simple API endpoint
-@app.get("")
+@app.get("/")
 def hello():
     return {"message": "System is online and ready to serve!"}
 
