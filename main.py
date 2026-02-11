@@ -1,9 +1,7 @@
 from fastapi import FastAPI,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-from mikrotik import get_active_users, create_hotspot_user
-from pydantic import BaseModel
-
+from mikrotik import get_active_users
 
 
 app = FastAPI(title="Hotspot Controller API")
@@ -20,9 +18,9 @@ app.add_middleware(
 
 
 # Simple API endpoint
-@app.get("/hello")
+@app.get("")
 def hello():
-    return {"message": "Hello, World!"}
+    return {"message": "System is online and ready to serve!"}
 
 
 @app.get("/active")
@@ -36,25 +34,3 @@ def dashboard():
         "active_users": active
     }
 
-
-# Input model for new user
-class HotspotUserCreate(BaseModel):
-    username: str
-    password: str
-    profile: str = "default"
-    limit_uptime: str = "unlimited"
-    comment: str = ""
-
-@app.post("/users/create")
-def create_user(data: HotspotUserCreate):
-    """Create a new hotspot user on MikroTik"""
-    result = create_hotspot_user(
-        username=data.username,
-        password=data.password,
-        profile=data.profile,
-        limit_uptime=data.limit_uptime,
-        comment=data.comment
-    )
-    if not result["success"]:
-        raise HTTPException(status_code=400, detail=result["message"])
-    return result

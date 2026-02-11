@@ -29,39 +29,3 @@ def get_active_users():
         for u in users
     ]
 
-
-def create_hotspot_user(username: str, password: str, profile: str = "default", limit_uptime: str = "unlimited", comment: str = ""):
-    """
-    Create a new hotspot user on MikroTik
-    """
-    api_pool = RouterOsApiPool(
-        os.getenv("MT_HOST"),
-        username=os.getenv("MT_USER"),
-        password=os.getenv("MT_PASSWORD"),
-        port=int(os.getenv("MT_PORT")),
-        plaintext_login=True
-    )
-    api = api_pool.get_api()
-    hotspot_users = api.get_resource('/ip/hotspot/user')
-
-    # Check if user already exists
-    existing = hotspot_users.get()
-    if any(u.get("name") == username for u in existing):
-        api_pool.disconnect()
-        return {"success": False, "message": "User already exists"}
-
-    # Add user
-    hotspot_users.add(
-        name=username,
-        password=password,
-        profile=profile,
-        limit_uptime=limit_uptime,
-        comment=comment
-    )
-    api_pool.disconnect()
-    return {"success": True, "message": f"User '{username}' created successfully"}
-
-
-
-
-
