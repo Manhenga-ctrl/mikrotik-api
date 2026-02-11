@@ -6,8 +6,6 @@ import os
 
 app = FastAPI(title="MIKROTIK API", version="1.0.0")
 
-
-
 load_dotenv()
 
 MIKROTIK_HOST = os.getenv("MIKROTIK_HOST")

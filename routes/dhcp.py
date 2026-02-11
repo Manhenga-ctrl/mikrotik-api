@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from mikrotik import MIKROTIK_HOST, get_mikrotik_api
+from config.mikrotik import MIKROTIK_HOST, get_mikrotik_api
 
 
 router = APIRouter(prefix="/dhcp", tags=["DHCP"])

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from mikrotik import get_mikrotik_api
+from config.mikrotik import get_mikrotik_api
 
 
 router = APIRouter(prefix="/bridge", tags=["Bridge"])
