@@ -17,6 +17,14 @@ app.add_middleware(
 )
 
 
+
+
+# Simple API endpoint
+@app.get("/hello")
+def hello():
+    return {"message": "Hello, World!"}
+
+
 @app.get("/active")
 def dashboard():
     """Summary endpoint for dashboard"""
