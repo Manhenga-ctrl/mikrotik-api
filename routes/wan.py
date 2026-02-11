@@ -8,7 +8,7 @@ router = APIRouter(prefix="/wan", tags=["WAN"])
 
 
 
-@router.get("/wan")
+@router.get("/")
 def get_wan():
     api_pool = get_mikrotik_api()
     api = api_pool.get_api()
