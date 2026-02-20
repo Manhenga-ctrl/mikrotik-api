@@ -4,6 +4,9 @@ package-lock.json
 yarn.lock
 
 # Environment variables
+.env
+.env.local
+.env.*.local
 
 # IDE and Editor
 .vscode/
@@ -40,5 +43,5 @@ coverage/
 __pycache__/
 *.pyc
 venv/
-
+.env
 
