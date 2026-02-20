@@ -391,7 +391,7 @@ def list_hotspot_files():
             # Remove hotspot/
             short_name = name.replace("hotspot/", "", 1)
 
-            # ❌ Skip subfolders (img/, js/, etc.)
+            # Skip subfolders (img/, js/, etc.)
             if "/" in short_name:
                 continue
 

@@ -128,9 +128,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
     return user
 
-# ────────────────────────────────────────────────
+
 # Public Auth Routes (no auth required)
-# ────────────────────────────────────────────────
+
 @app.post("/register", response_model=UserOut, status_code=201)
 async def register(data: RegisterRequest):
     if await users_collection.find_one({"username": data.username}):
@@ -166,9 +166,9 @@ async def read_users_me(current_user: dict = Depends(get_current_user)):
         username=current_user["username"]
     )
 
-# ────────────────────────────────────────────────
+
 # Protected Router Routes
-# ────────────────────────────────────────────────
+
 protected_router = APIRouter(
     prefix="/routers",
     tags=["routers"],
@@ -223,7 +223,6 @@ async def delete_router(router_id: str, current_user: dict = Depends(get_current
     return {"message": "Router deleted"}
 
 app.include_router(protected_router)
-
 app.include_router(bridge.router)
 app.include_router(system.router)
 app.include_router(interfaces.router)
@@ -231,9 +230,8 @@ app.include_router(hotspot.router)
 app.include_router(wan.router)
 app.include_router(dhcp.router)
 
-# ────────────────────────────────────────────────
 # Run
-# ────────────────────────────────────────────────
+
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
