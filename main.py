@@ -224,19 +224,12 @@ async def delete_router(router_id: str, current_user: dict = Depends(get_current
 
 app.include_router(protected_router)
 
-
-
 app.include_router(bridge.router)
 app.include_router(system.router)
 app.include_router(interfaces.router)
 app.include_router(hotspot.router)
 app.include_router(wan.router)
 app.include_router(dhcp.router)
-
-
-
-
-
 
 # ────────────────────────────────────────────────
 # Run
