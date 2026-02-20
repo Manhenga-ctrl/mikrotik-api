@@ -2,7 +2,6 @@ from fastapi import APIRouter, HTTPException,APIRouter, UploadFile, File, HTTPEx
 from pydantic import BaseModel
 from schemas.hotspot import BulkCreateByCount
 from config.mikrotik import MIKROTIK_HOST, get_mikrotik_api
-
 import random
 import string
 
