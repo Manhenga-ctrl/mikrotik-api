@@ -1,6 +1,6 @@
 
 from fastapi import APIRouter, HTTPException
-from config.mikrotik import MIKROTIK_HOST, get_mikrotik_api
+from config.mikrotik import  get_mikrotik_api
 
 router = APIRouter(prefix="/wan", tags=["WAN"])
 

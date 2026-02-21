@@ -20,30 +20,19 @@ load_dotenv()
 
 app = FastAPI(title="MIKROTIK ROUTER MANAMGEMENT API", version="1.0.0")
 
-# CORS – restrict in production!
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://209.97.148.247",
-        "http://209.97.148.247:8000",
-        "https://yourdomain.com"
-    ],
+    allow_origins=[ "http://localhost:5173", "http://127.0.0.1:5173", "http://209.97.148.247", "http://209.97.148.247:8000", "https://mydomain.com" ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
-
-
-
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+###################################################################################################
 SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY is not set in environment variables")
@@ -61,6 +50,7 @@ routers_collection = db["routers"]
 
 pwd_context = CryptContext(schemes=["argon2", "bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+####################################################################################################
 
 
 class RegisterRequest(BaseModel):
